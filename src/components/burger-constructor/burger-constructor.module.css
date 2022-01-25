@@ -1,0 +1,38 @@
+.burgerConstructor {
+  max-width: 600px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+.list::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+.listItem{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.icon {
+  width: 33px;
+  height: 33px;
+}

@@ -1,0 +1,29 @@
+.header {
+  background: #1c1c21;
+  margin: 0 auto;
+  width: 1240px;
+  min-height: 88px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.button {
+  display: flex;
+  cursor: pointer;
+}
+
+.logo {
+  margin-top: 24px;
+}
