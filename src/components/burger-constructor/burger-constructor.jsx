@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Subtract from '../../images/Subtract.svg';
+import ingredientsPropTypes from '../../utils/types';
 
 export default function BurgerConstructor(props) {
 
@@ -25,7 +26,7 @@ export default function BurgerConstructor(props) {
 
   return (
     <section className={stylesCostruct.burgerConstructor + ' pt-25 ml-10'}>
-      <ul className={stylesCostruct.list + ' mr-4 ml-4'}>
+      <ul className={stylesCostruct.list + ' pr-4 ml-4'}>
         {bun && (
           <li className={stylesCostruct.listItem + ' mt-4'} >
             <ConstructorElement 
@@ -37,6 +38,8 @@ export default function BurgerConstructor(props) {
             />
           </li>
         )}
+      </ul>
+      <ul className={stylesCostruct.listMain + ' pr-2 ml-4'}>
         {props.data.map((ingredient) => { 
           if (ingredient.type !== 'bun') {
             return (
@@ -50,6 +53,8 @@ export default function BurgerConstructor(props) {
               </li>
             );}
         })}
+      </ul>
+      <ul className={stylesCostruct.list + ' pr-4 ml-4'}>
         {bun && (
           <li className={stylesCostruct.listItem + ' mt-4'} >
             <ConstructorElement 
@@ -75,15 +80,6 @@ export default function BurgerConstructor(props) {
     </section>
   );
 }
-
-
-const ingredientsPropTypes = PropTypes.shape({
-  _id: PropTypes.string,
-  type: PropTypes.string,
-  image: PropTypes.string,
-  price: PropTypes.number,
-  name: PropTypes.string,
-});
 
 BurgerConstructor.propTypes = {
   data: PropTypes.arrayOf(ingredientsPropTypes).isRequired,

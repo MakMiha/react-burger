@@ -1,7 +1,7 @@
 .modal {
   width: 720px;
   background: #1c1c21;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   z-index: 4;

@@ -9,7 +9,7 @@ export default function Modal(props) {
   
   React.useEffect(() => {
     const escClose = (evt) => {
-      if (evt.key === "Escape") {
+      if (evt.key === 'Escape') {
         props.closeModal();
       }
     }

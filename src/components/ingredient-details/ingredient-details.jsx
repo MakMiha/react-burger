@@ -31,20 +31,6 @@ export default function IngredientDetails({data}) {
   );
 }
 
-
-const ingredientsPropTypes = PropTypes.shape({
-  _id: PropTypes.string,
-  type: PropTypes.string,
-  image: PropTypes.string,
-  price: PropTypes.number,
-  name: PropTypes.string,
-  image_large: PropTypes.string,
-  calories: PropTypes.number,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-});
-
 IngredientDetails.propTypes = {
-  data: ingredientsPropTypes.isRequired,
+  data: PropTypes.object.isRequired,
 };
