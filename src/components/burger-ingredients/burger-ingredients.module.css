@@ -1,0 +1,18 @@
+.burgerIngredients {
+  max-width: 600px;
+}
+
+.ingredientsArea {
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.ingredientsArea::-webkit-scrollbar {
+  width: 8px;
+}
+.ingredientsArea::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+.ingredientsArea::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
