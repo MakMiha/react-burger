@@ -4,16 +4,17 @@ import {
   ConstructorElement,
   DragIcon,
   Button,
-  CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Subtract from '../../images/Subtract.svg';
 import ingredientsPropTypes from '../../utils/types';
+import { IngredientsContext } from '../../services/ingredientsContext';
 
-export default function BurgerConstructor(props) {
+export default function BurgerConstructor() {
 
+  const data = React.useContext(IngredientsContext);
   const [modalVisible, setModalVisible] = React.useState(false);
   const closeModal = () => {
     setModalVisible(false);
@@ -22,7 +23,7 @@ export default function BurgerConstructor(props) {
     setModalVisible(true);
   } 
   
-  const bun = props.data.find((ingredient) => ingredient.name === 'Краторная булка N-200i');
+  const bun = data.find((ingredient) => ingredient.name === 'Краторная булка N-200i');
 
   return (
     <section className={stylesCostruct.burgerConstructor + ' pt-25 ml-10'}>
@@ -40,7 +41,7 @@ export default function BurgerConstructor(props) {
         )}
       </ul>
       <ul className={stylesCostruct.listMain + ' pr-2 ml-4'}>
-        {props.data.map((ingredient) => { 
+        {data.map((ingredient) => { 
           if (ingredient.type !== 'bun') {
             return (
               <li className={stylesCostruct.listItem + ' mt-4'} key={ingredient._id}>
@@ -81,6 +82,6 @@ export default function BurgerConstructor(props) {
   );
 }
 
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientsPropTypes).isRequired,
-};
+// BurgerConstructor.propTypes = {
+//   data: PropTypes.arrayOf(ingredientsPropTypes).isRequired,
+// };

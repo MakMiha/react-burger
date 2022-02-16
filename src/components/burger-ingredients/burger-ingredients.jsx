@@ -6,9 +6,11 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import ingredientsPropTypes from '../../utils/types';
 import Tabs from '../tabs/tabs';
 import IngredientsList from '../ingredient-list/ingredient-list';
+import { IngredientsContext } from '../../services/ingredientsContext';
 
-export default function BurgerIngredients({data}) {
+export default function BurgerIngredients() {
 
+  const data = React.useContext(IngredientsContext);
   const [modalVisible, setModalVisible] = React.useState(false);
   const closeModal = () => {
     setModalVisible(false);
@@ -47,6 +49,6 @@ export default function BurgerIngredients({data}) {
   );
 }
   
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientsPropTypes).isRequired,
-};
+// BurgerIngredients.propTypes = {
+//   data: PropTypes.arrayOf(ingredientsPropTypes).isRequired,
+// };
