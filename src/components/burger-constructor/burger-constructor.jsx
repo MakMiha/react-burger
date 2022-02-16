@@ -15,7 +15,11 @@ import { IngredientsContext } from '../../services/ingredientsContext';
 export default function BurgerConstructor() {
 
   const data = React.useContext(IngredientsContext);
+  const initialState = { totalPrice: 0 };
+  const [totalPriceState, dispatch] = React.useReducer(reducer, initialState, undefined);
+
   const [modalVisible, setModalVisible] = React.useState(false);
+
   const closeModal = () => {
     setModalVisible(false);
   }
@@ -23,6 +27,13 @@ export default function BurgerConstructor() {
     setModalVisible(true);
   } 
   
+  function reducer() {
+    const totalPrice = data.reduce((total, ingredient) => total + ingredient.price, 0);
+    return { totalPrice: totalPrice };
+  }
+
+  React.useEffect(() => { dispatch() }, [data]);
+
   const bun = data.find((ingredient) => ingredient.name === 'Краторная булка N-200i');
 
   return (
@@ -69,7 +80,7 @@ export default function BurgerConstructor() {
         )}
       </ul>
       <div className={stylesCostruct.order + ' mt-10 mr-4'}>
-        <p className='text text_type_digits-medium mr-2'>610</p>
+        <p className='text text_type_digits-medium mr-2'>{totalPriceState.totalPrice}</p>
         <img src={Subtract} alt='Валюта' className={stylesCostruct.icon + ' mr-10'}/>
         <Button type='primary' size='large' onClick={openModal}>Оформить заказ</Button>
       </div>
