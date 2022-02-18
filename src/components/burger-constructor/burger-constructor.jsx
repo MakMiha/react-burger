@@ -11,6 +11,7 @@ import OrderDetails from '../order-details/order-details';
 import Subtract from '../../images/Subtract.svg';
 import ingredientsPropTypes from '../../utils/types';
 import { IngredientsContext } from '../../services/ingredientsContext';
+import URL from '../../utils/data';
 
 export default function BurgerConstructor() {
 
@@ -19,11 +20,13 @@ export default function BurgerConstructor() {
   const [totalPriceState, dispatch] = React.useReducer(reducer, initialState, undefined);
 
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [orderInfo, setOrderInfo] = React.useState({orderNumber: '',});
 
   const closeModal = () => {
     setModalVisible(false);
   }
   const openModal = () => {
+    getOrder();
     setModalVisible(true);
   } 
   
@@ -33,6 +36,31 @@ export default function BurgerConstructor() {
   }
 
   React.useEffect(() => { dispatch() }, [data]);
+
+  function getOrder() {
+    const order = data.map((ingredient) => ingredient._id);
+    fetch(`${URL}/orders`, {
+      method: 'POST',
+      body: JSON.stringify({
+        ingredients: order,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`);
+      })
+      .then((res) => {
+        setOrderInfo({orderNumber: res.order.number})
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 
   const bun = data.find((ingredient) => ingredient.name === 'Краторная булка N-200i');
 
@@ -86,7 +114,7 @@ export default function BurgerConstructor() {
       </div>
       {modalVisible &&
         <Modal closeModal={closeModal}>
-          <OrderDetails />
+          <OrderDetails orderInfo={orderInfo}/>
         </Modal>
       }
     </section>
