@@ -25,6 +25,7 @@
 .listMain::-webkit-scrollbar-thumb {
   background: #8585ad;
 }
+
 .listItem{
   display: flex;
   align-items: center;

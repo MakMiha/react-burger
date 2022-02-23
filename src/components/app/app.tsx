@@ -4,37 +4,20 @@ import stylesApp from'./app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import URL from '../../utils/data';
-import { IngredientsContext } from '../../services/ingredientsContext';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function App() {
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch(`${URL}/ingredients`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
-      .then((ingredients) => { 
-          setData(ingredients.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
 
   return (
     <>
       <AppHeader />
-      <IngredientsContext.Provider value={data}>
         <main className={stylesApp.main}>
-          <BurgerIngredients />
-          <BurgerConstructor />
+          <DndProvider backend={HTML5Backend}>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </DndProvider>
         </main>
-      </IngredientsContext.Provider>
     </>
   );
 }
