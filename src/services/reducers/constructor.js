@@ -2,7 +2,8 @@ import {
   ADD_INGREDIENT,
   DELETE_INGREDIENT,
   MOVE_INGREDIENT,
-  ADD_BUN
+  ADD_BUN,
+  RESET_BURGER_CONSTRUCTOR
 } from '../actions/constructor';
   
 const constructorInitialState = {
@@ -39,6 +40,13 @@ export const constructorReducer = (state = constructorInitialState, action) => {
         constructor: [...state.constructor].filter(
           (data) => data.uniqId !== action.data.uniqId
         ),
+      };
+    }
+    case RESET_BURGER_CONSTRUCTOR: {
+      return {
+        ...state,
+        constructor: [],
+        bun: {}
       };
     }
     default: {

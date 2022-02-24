@@ -3,6 +3,7 @@ import URL from '../../utils/data';
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
 export const GET_ORDER_NUMBER_ERROR = 'GET_ORDER_NUMBER_ERROR';
+export const RESET_ORDER_NUMBER = 'RESET_ORDER_NUMBER';
 
 export function postOrder(order) {
     

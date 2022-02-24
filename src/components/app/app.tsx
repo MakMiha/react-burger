@@ -6,8 +6,15 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { getIngredients } from '../../services/actions/ingredients';
+import { useDispatch } from 'react-redux';
 
 export default function App() {
+
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   return (
     <>

@@ -9,11 +9,12 @@ import OrderDetails from '../order-details/order-details';
 import Subtract from '../../images/Subtract.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
-import { postOrder } from '../../services/actions/order';
+import { postOrder, RESET_ORDER_NUMBER } from '../../services/actions/order';
 import {
   ADD_BUN,
   ADD_INGREDIENT,
   MOVE_INGREDIENT,
+  RESET_BURGER_CONSTRUCTOR
 } from '../../services/actions/constructor';
 import IngredientConstructor from '../ingredient-constructor/ingredient-constructor';
 
@@ -29,6 +30,12 @@ export default function BurgerConstructor() {
 
   const closeModal = () => {
     setModalVisible(false);
+    dispatch({
+      type: RESET_ORDER_NUMBER,
+    });
+    dispatch({
+      type: RESET_BURGER_CONSTRUCTOR,
+    });
   }
   const order = (data.map((ingredient) => ingredient._id)).concat(bun._id);
   const openModal = () => {

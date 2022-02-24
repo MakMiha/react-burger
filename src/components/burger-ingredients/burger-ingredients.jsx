@@ -4,8 +4,7 @@ import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import Tabs from '../tabs/tabs';
 import IngredientsList from '../ingredient-list/ingredient-list';
-import { useSelector, useDispatch } from 'react-redux'; 
-import { getIngredients } from '../../services/actions/ingredients';
+import { useSelector, useDispatch } from 'react-redux';
 import { HIDE_DETAILS_INGREDIENT } from '../../services/actions/ingredient-detail';
 
 export default function BurgerIngredients() {
@@ -25,9 +24,6 @@ export default function BurgerIngredients() {
     setModalVisible(true);
   } 
 
-  React.useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
 
   const [current, setCurrent] = React.useState('one');
   const bun = React.useRef(null);
