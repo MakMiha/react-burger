@@ -17,13 +17,17 @@ import {
   RESET_BURGER_CONSTRUCTOR
 } from '../../services/actions/constructor';
 import IngredientConstructor from '../ingredient-constructor/ingredient-constructor';
+import { useHistory } from 'react-router-dom';
 
 export default function BurgerConstructor() {
 
+  const history = useHistory();
   const dispatch = useDispatch();
-  const { bun, data} = useSelector((state) => ({
+  const { bun, data, isAuth, isUser} = useSelector((state) => ({
     bun: state.constructorIngredients.bun,
     data: state.constructorIngredients.constructor,
+    isAuth: state.auth.isAuth,
+    isUser: state.userInfo.isUser,
   }));
   const [modalVisible, setModalVisible] = React.useState(false);
   const orderNumber = useSelector((state) => state.order.orderNumber);
@@ -39,8 +43,12 @@ export default function BurgerConstructor() {
   }
   const order = (data.map((ingredient) => ingredient._id)).concat(bun._id);
   const openModal = () => {
-    dispatch(postOrder(order));
-    setModalVisible(true);
+    if (isAuth || isUser) {
+      dispatch(postOrder(order));
+      setModalVisible(true);
+    } else {
+      history.replace({ pathname: '/login' });
+    }
   } 
   
   const initialState = { totalPrice: 0 };

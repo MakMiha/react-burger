@@ -14,16 +14,6 @@ export default function BurgerIngredients() {
     ingredientData: state.ingredientDetail.ingredient,
   }));
   const [modalVisible, setModalVisible] = React.useState(false);
-  const closeModal = () => {
-    setModalVisible(false);
-    dispatch({
-      type: HIDE_DETAILS_INGREDIENT,
-    });
-  }
-  const openModal = ( ) => {
-    setModalVisible(true);
-  } 
-
 
   const [current, setCurrent] = React.useState('one');
   const bun = React.useRef(null);
@@ -51,22 +41,17 @@ export default function BurgerIngredients() {
       <div className={stylesIngredients.ingredientsArea + ' mt-10'} onScroll={handleScroll}>
         <div ref={bun} className='mt-10'>
           <h2 className='text text_type_main-medium'>Булки</h2>
-          <IngredientsList data={data} type={'bun'} openModal={openModal}/>
+          <IngredientsList data={data} type={'bun'} />
         </div>
         <div ref={sauce} className='mt-10'>
           <h2 className='text text_type_main-medium'>Соусы</h2>
-          <IngredientsList data={data} type={'sauce'} openModal={openModal}/>
+          <IngredientsList data={data} type={'sauce'} />
         </div>
         <div ref={main} className='mt-10'>
           <h2 className='text text_type_main-medium'>Начинки</h2>
-          <IngredientsList data={data} type={'main'} openModal={openModal}/>
+          <IngredientsList data={data} type={'main'} />
         </div>
       </div>
-      {modalVisible &&
-        <Modal closeModal={closeModal}>
-          <IngredientDetails data={ingredientData} />
-        </Modal>
-      }
     </section>
   );
 }
