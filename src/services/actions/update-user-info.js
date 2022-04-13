@@ -1,5 +1,6 @@
 import URL from '../../utils/data';
 import { getCookie } from '../../utils/cookie';
+import { updateToken } from './update-token';
 
 export const UPDATE_USER_INFO_SUCCESS = 'UPDATE_USER_INFO_SUCCESS';
 export const UPDATE_USER_INFO_REQUEST = 'UPDATE_USER_INFO_REQUEST';
@@ -43,6 +44,10 @@ export function updateUserInfo(form) {
         dispatch({
           type: UPDATE_USER_INFO_ERROR,
         });
+        if (err === 'Ошибка 403') {
+          dispatch(updateToken());
+          dispatch(updateUserInfo());
+        }
       });
   };
 }

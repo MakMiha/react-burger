@@ -7,16 +7,14 @@ import {
 import { setNewPassword } from '../../services/actions/new-password';
 import resetPassword from './reset-password.module.css';
 import { Link, Redirect } from 'react-router-dom';
-import { getCookie } from '../../utils/cookie';
 
 export function ResetPassword() {
   
   const dispatch = useDispatch();
   const [form, setValue] = React.useState({ password: '', token: ''});
-  const isAuth = useSelector((store) => store.auth.isAuth);
   const hasNewPassword = useSelector((store) => store.setNewPassword.hasNewPassword);
-  const hasAccessCookie = (getCookie('accessToken') != null);
-  const hasRefreshToken = (localStorage.getItem('refreshToken') != null);
+  const user = useSelector((store) => store.userInfo.user);
+  const isUser = user != null;
 
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
@@ -30,7 +28,7 @@ export function ResetPassword() {
     [form, dispatch]
   );
 
-  if (isAuth || hasAccessCookie || hasRefreshToken) {
+  if (isUser) {
     return (
       <Redirect to={{pathname: '/'}} />
     );

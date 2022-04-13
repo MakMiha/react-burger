@@ -1,5 +1,6 @@
 import URL from '../../utils/data';
 import { setCookie } from '../../utils/cookie';
+import { getUserInfo } from './get-user-info';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
@@ -31,6 +32,7 @@ export function signIn(form) {
           });
           setCookie('accessToken', res.accessToken);
           localStorage.setItem('refreshToken', res.refreshToken);
+          dispatch(getUserInfo());
         } else {
           dispatch({
             type: AUTH_ERROR,

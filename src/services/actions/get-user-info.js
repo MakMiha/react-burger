@@ -1,5 +1,6 @@
 import URL from '../../utils/data';
 import { getCookie } from '../../utils/cookie';
+import { updateToken } from './update-token';
 
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
 export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
@@ -38,10 +39,14 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
         dispatch({
           type: GET_USER_INFO_ERROR,
         });
+        if (err === 'Ошибка 403') {
+          dispatch(updateToken());
+          dispatch(getUserInfo());
+        }
       });
   };
 }

@@ -6,8 +6,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { SHOW_DETAILS_INGREDIENT } from '../../services/actions/ingredient-detail';
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
 const Ingredient = ({ data }) => {
@@ -33,16 +32,11 @@ const Ingredient = ({ data }) => {
     setCounter(getCount());
   }, [selectedIngredients, data]);
 
-  const dispatch = useDispatch();
 
   const history = useHistory();
   const location = useLocation();
   
   function onClick() {
-    dispatch({
-      type: SHOW_DETAILS_INGREDIENT,
-      data: data,
-    });
     history.push({
       pathname: `/ingredients/${data._id}`,
       state: { background: location },

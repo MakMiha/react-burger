@@ -12,11 +12,11 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 export function Login() {
 
   const [form, setValue] = React.useState({ email: '', password: '' });
-  const isAuth = useSelector((store) => store.auth.isAuth);
-  const isUser = useSelector((store) => store.userInfo.isUser);
+  const user = useSelector((store) => store.userInfo.user);
+  const isUser = user != null;
   const dispatch = useDispatch();
   const location = useLocation();
-
+  
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -29,7 +29,7 @@ export function Login() {
     [form, dispatch]
   );
 
-  if (isAuth || isUser) {
+  if (isUser) {
     return (
       <Redirect to={location.state?.from  || '/'} />
     );

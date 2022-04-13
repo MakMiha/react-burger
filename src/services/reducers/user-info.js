@@ -10,15 +10,14 @@ import {
   UPDATE_USER_INFO_ERROR,
 } from '../actions/update-user-info';
 
+import {
+  CLEAR_USER_INFO,
+} from '../actions/logout';
+
 const userInfoInitialState = {
-  user: {
-    email: '',
-    name: '',
-    password: '',
-  },
+  user: null,
   getUserInfoRequest: false,
   getUserInfoError: false,
-  isUser: false,
   updateUserInfoRequest: false,
   updateUserInfoError: false,
 };
@@ -30,7 +29,6 @@ export const userInfoReducer = ( state = userInfoInitialState, action ) => {
         ...state,
         getUserInfoRequest: false,
         getUserInfoError: false,
-        isUser: true,
         user: action.user,
       };
     }
@@ -68,6 +66,12 @@ export const userInfoReducer = ( state = userInfoInitialState, action ) => {
         ...state,
         updateUserInfoRequest: false,
         updateUserInfoError: true,
+      };
+    }
+    case CLEAR_USER_INFO: {
+      return {
+        ...state,
+        user: null,
       };
     }
     default: {

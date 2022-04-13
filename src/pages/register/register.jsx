@@ -9,15 +9,13 @@ import {
 import { register } from '../../services/actions/register';
 import registerStyle from './register.module.css';
 import { Link, Redirect } from 'react-router-dom';
-import { getCookie } from '../../utils/cookie';
 
 export function Register() {
 
   const dispatch = useDispatch();
   const [form, setValue] = React.useState({ email: '', name: '', password: '' });
-  const isAuth = useSelector((store) => store.auth.isAuth);
-  const hasAccessCookie = (getCookie('accessToken') != null);
-  const hasRefreshToken = (localStorage.getItem('refreshToken') != null);
+  const user = useSelector((store) => store.userInfo.user);
+  const isUser = user != null;
 
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
@@ -31,7 +29,7 @@ export function Register() {
     [form, dispatch]
   );
 
-  if (isAuth || hasAccessCookie || hasRefreshToken) {
+  if (isUser) {
     return (
       <Redirect to={{pathname: '/'}} />
     );

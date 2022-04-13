@@ -20,29 +20,37 @@ import { getIngredients } from '../../services/actions/ingredients';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-import { HIDE_DETAILS_INGREDIENT } from '../../services/actions/ingredient-detail';
+import { getCookie } from '../../utils/cookie';
+import { getUserInfo } from '../../services/actions/get-user-info';
+import { updateToken } from '../../services/actions/update-token';
 
 export default function App() {
 
   const history = useHistory();
-  let location = useLocation();
+  const location = useLocation();
+  const background = location.state && location.state.background;
 
-  let background = location.state && location.state.background;
-  
-  const { modalVisible, ingredientData} = useSelector((state) => ({
-    modalVisible: state.ingredientDetail.modalVisible,
-    ingredientData: state.ingredientDetail.ingredient,
-  }));
-  
   const dispatch = useDispatch();
+  const hasAccessToken = (getCookie('accessToken') != null);
+  const hasRefreshToken = (localStorage.getItem('refreshToken') != null);
+  
+  const init = async () => {
+     if (hasAccessToken) {
+        dispatch(getUserInfo());
+    } else if (hasRefreshToken) {
+        dispatch(updateToken());
+    }
+  };
+
+  React.useEffect(() => {
+    init();
+  }, []);
+
   React.useEffect(() => {
     dispatch(getIngredients());
   }, [dispatch]);
 
   const closeModal = () => {
-    dispatch({
-      type: HIDE_DETAILS_INGREDIENT,
-    });
     history.goBack();
   };
 
@@ -74,11 +82,9 @@ export default function App() {
         </Switch>
           {background && (
             <Route path='/ingredients/:id'>
-              {modalVisible && (
-                <Modal closeModal={closeModal}>
-                  <IngredientDetails data={ingredientData} />
-                </Modal>
-              )}
+              <Modal closeModal={closeModal}>
+                <IngredientDetails />
+              </Modal>
             </Route>
           )}
     </>

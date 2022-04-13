@@ -4,6 +4,7 @@ import { deleteCookie } from '../../utils/cookie';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+export const CLEAR_USER_INFO = 'CLEAR_USER_INFO';
 
 export function logout() {
     
@@ -30,6 +31,9 @@ export function logout() {
         if (res.success) {
           dispatch({
             type: LOGOUT_SUCCESS,
+          });
+          dispatch({
+            type: CLEAR_USER_INFO,
           });
           deleteCookie('accessToken');
           localStorage.removeItem('refreshToken');

@@ -9,13 +9,14 @@ import {
 import profileStyle from './profile.module.css';
 import { updateUserInfo } from '../../services/actions/update-user-info';
 import { logout } from '../../services/actions/logout';
-import { NavLink  } from 'react-router-dom';
+import { NavLink, Redirect  } from 'react-router-dom';
 
 export function Profile() {
 
   const [form, setValue] = React.useState({ name: '', email: '', password: '' });
   const [edit, setEdit] = React.useState(false);
   const user = useSelector((store) => store.userInfo.user);
+  const isUser = user != null;
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -31,6 +32,7 @@ export function Profile() {
     (e) => {
       e.preventDefault();
       dispatch(updateUserInfo(form));
+      setEdit(false);
     },
     [form, dispatch]
   );
@@ -45,6 +47,12 @@ export function Profile() {
     setValue(user);
     setEdit(false);
   };
+
+  if (!isUser) {
+    return (
+      <Redirect to={{pathname: '/login'}} />
+    );
+  }
 
   return (
     <div className={profileStyle.main}>

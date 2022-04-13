@@ -23,15 +23,15 @@ export default function BurgerConstructor() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const { bun, data, isAuth, isUser} = useSelector((state) => ({
+  const { bun, data, user} = useSelector((state) => ({
     bun: state.constructorIngredients.bun,
     data: state.constructorIngredients.constructor,
-    isAuth: state.auth.isAuth,
-    isUser: state.userInfo.isUser,
+    user: state.userInfo.user,
+  
   }));
   const [modalVisible, setModalVisible] = React.useState(false);
   const orderNumber = useSelector((state) => state.order.orderNumber);
-
+  const isUser = user != null;
   const closeModal = () => {
     setModalVisible(false);
     dispatch({
@@ -43,7 +43,7 @@ export default function BurgerConstructor() {
   }
   const order = (data.map((ingredient) => ingredient._id)).concat(bun._id);
   const openModal = () => {
-    if (isAuth || isUser) {
+    if (isUser) {
       dispatch(postOrder(order));
       setModalVisible(true);
     } else {
@@ -136,7 +136,11 @@ export default function BurgerConstructor() {
       <div className={stylesCostruct.order + ' mt-10 mr-4'}>
         <p className='text text_type_digits-medium mr-2'>{totalPriceState.totalPrice}</p>
         <img src={Subtract} alt='Валюта' className={stylesCostruct.icon + ' mr-10'}/>
-        <Button type='primary' size='large' onClick={openModal}>Оформить заказ</Button>
+        <Button type='primary' size='large' disabled={
+                      ( bun.name && data.length !=0
+                        ? ''
+                        : 'disabled')
+                    }  onClick={openModal}>Оформить заказ</Button>
       </div>
       {modalVisible &&
         <Modal closeModal={closeModal}>
