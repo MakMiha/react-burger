@@ -5,6 +5,7 @@ import { getUserInfo } from './get-user-info';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const SET_USER = 'SET_USER';
 
 export function signIn(form) {
     
@@ -32,7 +33,10 @@ export function signIn(form) {
           });
           setCookie('accessToken', res.accessToken);
           localStorage.setItem('refreshToken', res.refreshToken);
-          dispatch(getUserInfo());
+          dispatch({
+            type: SET_USER,
+            user: res.user,
+          });
         } else {
           dispatch({
             type: AUTH_ERROR,

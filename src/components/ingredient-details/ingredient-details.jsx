@@ -5,9 +5,13 @@ import { useSelector } from 'react-redux';
 
 export default function IngredientDetails() {
 
-  let { id } = useParams(); 
+  const { id } = useParams(); 
   const ingredients = useSelector((store) => store.ingredients.ingredients);
-  let ingredientData = ingredients.find((ingredient) => ingredient._id === id);
+  const ingredientData = ingredients.find((ingredient) => ingredient._id === id);
+
+  if (!ingredientData) {
+    return null;
+  }
 
   return (
     <><h2 className='text text_type_main-large mt-15 ml-10 mr-10'>Детали ингредиента</h2>

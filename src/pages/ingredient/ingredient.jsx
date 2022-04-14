@@ -6,9 +6,9 @@ import stylesIngridient from './ingredient.module.css';
 
 export function Ingredient() {
 
-  let { id } = useParams(); 
+  const { id } = useParams(); 
   const ingredients = useSelector((store) => store.ingredients.ingredients);
-  let ingredientData = ingredients.find((ingredient) => ingredient._id === id);
+  const ingredientData = ingredients.find((ingredient) => ingredient._id === id);
 
   if (!ingredientData) {
     return null;

@@ -13,6 +13,9 @@ import {
 import {
   CLEAR_USER_INFO,
 } from '../actions/logout';
+import {
+  SET_USER,
+} from '../actions/auth';
 
 const userInfoInitialState = {
   user: null,
@@ -72,6 +75,12 @@ export const userInfoReducer = ( state = userInfoInitialState, action ) => {
       return {
         ...state,
         user: null,
+      };
+    }
+    case SET_USER: {
+      return {
+        ...state,
+        user: action.user,
       };
     }
     default: {

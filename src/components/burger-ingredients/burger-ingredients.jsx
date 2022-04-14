@@ -21,7 +21,7 @@ export default function BurgerIngredients() {
   const main = React.useRef(null);
 
   const handleScroll = (evt) => {
-    let element = evt.target;
+    const element = evt.target;
     const tab = () => {
       if (element.scrollTop - bun.current.clientHeight < 0) {
         return 'one';
