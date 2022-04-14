@@ -5,6 +5,7 @@ import {
 
 const ingredientDetailInitialState = {
   ingredient: {},
+  modalVisible: false,
 };
 
 export const ingredientDetailReducer = (state = ingredientDetailInitialState, action) => {
@@ -13,12 +14,14 @@ export const ingredientDetailReducer = (state = ingredientDetailInitialState, ac
       return {
         ...state,
         ingredient: action.data,
+        modalVisible: true,
       };
     }
     case HIDE_DETAILS_INGREDIENT: {
       return {
         ...state,
         ingredient: {},
+        modalVisible: false,
       };
     }
     default: {

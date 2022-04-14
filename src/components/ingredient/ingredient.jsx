@@ -5,11 +5,11 @@ import {
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { SHOW_DETAILS_INGREDIENT } from '../../services/actions/ingredient-detail';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-const Ingredient = ({ data, openModal }) => {
+const Ingredient = ({ data }) => {
 
   const [count, setCounter] = React.useState();
   const selectedIngredients = useSelector(state => {
@@ -32,14 +32,17 @@ const Ingredient = ({ data, openModal }) => {
     setCounter(getCount());
   }, [selectedIngredients, data]);
 
-  const dispatch = useDispatch();
+
+  const history = useHistory();
+  const location = useLocation();
+  
   function onClick() {
-    dispatch({
-      type: SHOW_DETAILS_INGREDIENT,
-      data: data,
+    history.push({
+      pathname: `/ingredients/${data._id}`,
+      state: { background: location },
     });
-    openModal();
   }
+  
   const [, dragRef] = useDrag({
     type: 'ingredient',
     item: data,
@@ -63,7 +66,6 @@ const Ingredient = ({ data, openModal }) => {
 
   Ingredient.propTypes = {
     data: PropTypes.object.isRequired,
-    openModal: PropTypes.func.isRequired
   };
 
 export default Ingredient;

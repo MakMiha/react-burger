@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.main {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  height: 64px;
+  color: #8585ad;
+}
+
+.text {
+  width: 320px;
+  opacity: 0.4;
+}
+
+.activeLink {
+  color: #f2f2f3;
+}
+
+.logout {
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  color: #8585ad;
+  padding: 0;
+  display: flex;
+}
