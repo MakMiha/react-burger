@@ -14,12 +14,16 @@ import {
   ForgotPassword, 
   ResetPassword, 
   Profile,
-  Ingredient
+  Ingredient,
+  Feed,
+  Order,
+  ProfileOrders
 } from '../../pages';
 import { getIngredients } from '../../services/actions/ingredients';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import OrderInfo from '../order-info/order-info';
 import { getCookie } from '../../utils/cookie';
 import { getUserInfo } from '../../services/actions/get-user-info';
 import { updateToken } from '../../services/actions/update-token';
@@ -73,8 +77,20 @@ export default function App() {
           <Route path='/reset-password' exact>
             <ResetPassword />
           </Route>
+          <Route path='/feed' exact>
+            <Feed />
+          </Route>
+          <Route path='/feed/:id' exact>
+            <Order />
+          </Route>
           <ProtectedRoute path='/profile' exact>  
             <Profile />
+          </ProtectedRoute>
+          <ProtectedRoute path='/profile/orders' exact> 
+            <ProfileOrders />
+          </ProtectedRoute>
+          <ProtectedRoute path='/profile/orders/:id' exact> 
+            <Order />
           </ProtectedRoute>
           <Route path='/ingredients/:id' exact>
             <Ingredient />
@@ -84,6 +100,20 @@ export default function App() {
             <Route path='/ingredients/:id'>
               <Modal closeModal={closeModal}>
                 <IngredientDetails />
+              </Modal>
+            </Route>
+          )}
+          {background && (
+            <Route path='/profile/orders/:id'>
+              <Modal closeModal={closeModal}>
+                <OrderInfo modal={true}/>
+              </Modal>
+            </Route>
+          )}
+          {background && (
+            <Route path='/feed/:id'>
+              <Modal closeModal={closeModal}>
+                <OrderInfo modal={true}/>
               </Modal>
             </Route>
           )}

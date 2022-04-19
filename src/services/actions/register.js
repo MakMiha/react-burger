@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';

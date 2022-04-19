@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
 
 export const PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
 export const PASSWORD_RESET_REQUEST = 'PASSWORD_RESET_REQUEST';

@@ -1,0 +1,81 @@
+.orderNumber {
+  width: 600px;
+}
+
+.orderNumber {
+  text-align: center;
+}
+
+.orderStatus {
+  color: #00cccc;
+  font-size: 16px;
+}
+
+.inredients {
+  max-height: 350px;
+  overflow-y: scroll;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.inredients::-webkit-scrollbar {
+  width: 8px;
+}
+.inredients::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+.inredients::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+.inredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.price {
+  display: flex;
+  width: 150px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image {
+  overflow: hidden;
+  width: 64px;
+  height: 64px;
+  background-color: #131316;
+  border-radius: 100px;
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 0;
+}
+
+.image::before  {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 2px;
+  border-radius: 100px;
+  background: linear-gradient(to right, #801ab2, #4c4cff);
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+          mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}

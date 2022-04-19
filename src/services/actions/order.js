@@ -1,4 +1,5 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
+import { getCookie } from '../../utils/cookie';
 
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
@@ -18,6 +19,7 @@ export function postOrder(order) {
       }),
       headers: {
         'Content-Type': 'application/json',
+        authorization: getCookie('accessToken'),
       },
     })
       .then((res) => {

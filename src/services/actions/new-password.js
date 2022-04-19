@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
 
 export const SET_NEW_PASSWORD_SUCCESS = 'SET_NEW_PASSWORD_SUCCESS';
 export const SET_NEW_PASSWORD_REQUEST = 'SET_NEW_PASSWORD_REQUEST';

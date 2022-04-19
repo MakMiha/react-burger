@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
 import { deleteCookie } from '../../utils/cookie';
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';

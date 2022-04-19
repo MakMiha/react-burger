@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import { URL } from '../../utils/data';
 import { setCookie } from '../../utils/cookie';
 import { getUserInfo } from './get-user-info';
 

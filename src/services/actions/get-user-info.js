@@ -1,4 +1,4 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
 import { getCookie } from '../../utils/cookie';
 import { updateToken } from './update-token';
 
