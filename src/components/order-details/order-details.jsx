@@ -4,7 +4,7 @@ import doneImage from '../../images/done.svg';
 import PropTypes from 'prop-types';
 
 export default function OrderDetails({orderNumber}) {
-  
+
   return (
     <div className={stylesOrder.order + ' mt-30'}>
       <p className={stylesOrder.orderNumber + ' text text_type_digits-large'}>{orderNumber}</p>
@@ -19,5 +19,5 @@ export default function OrderDetails({orderNumber}) {
 }
 
 OrderDetails.propTypes = {
-  orderNumber: PropTypes.string.isRequired,
+  orderNumber: PropTypes.number.isRequired,
 };

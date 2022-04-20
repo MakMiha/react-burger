@@ -21,7 +21,7 @@ export default function OrderInfo({modal, path}) {
   let ingredientsUsed;
   let price;
   let status;
-  if (allOrdersData.length) {
+  if (allOrdersData.length && ingredientsData.length) {
    orderData = allOrdersData.find((order) => order._id === id);
    ingredientsUsed = ingredientsData.filter((ingredient) => orderData.ingredients.includes(ingredient._id));
 

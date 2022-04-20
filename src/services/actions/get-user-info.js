@@ -41,7 +41,6 @@ export function getUserInfo() {
         });
         if (err === 'Ошибка 403') {
           dispatch(updateToken());
-          dispatch(getUserInfo());
         }
       });
   };

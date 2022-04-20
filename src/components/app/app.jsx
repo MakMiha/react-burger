@@ -33,7 +33,7 @@ export default function App() {
   const history = useHistory();
   const location = useLocation();
   
-  const background = (history.action === 'PUSH' || history.action === 'REPLACE' || history.action === 'POP') && location.state && location.state.background;
+  const background = (history.action === 'PUSH' || history.action === 'REPLACE') && location.state && location.state.background;
   const dispatch = useDispatch();
   const hasAccessToken = (getCookie('accessToken') != null);
   const hasRefreshToken = (localStorage.getItem('refreshToken') != null);
