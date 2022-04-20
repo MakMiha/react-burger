@@ -19,11 +19,6 @@
   margin: 0;
 }
 
-.button {
-  display: flex;
-  cursor: pointer;
-}
-
 .logo {
   margin-top: 24px;
 }
@@ -32,4 +27,5 @@
   text-decoration: none;
   color: inherit;
   display: flex;
+  cursor: pointer;
 }

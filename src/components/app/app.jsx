@@ -32,8 +32,8 @@ export default function App() {
 
   const history = useHistory();
   const location = useLocation();
-  const background = location.state && location.state.background;
-
+  
+  const background = (history.action === 'PUSH' || history.action === 'REPLACE' || history.action === 'POP') && location.state && location.state.background;
   const dispatch = useDispatch();
   const hasAccessToken = (getCookie('accessToken') != null);
   const hasRefreshToken = (localStorage.getItem('refreshToken') != null);
@@ -81,7 +81,7 @@ export default function App() {
             <Feed />
           </Route>
           <Route path='/feed/:id' exact>
-            <Order />
+            <Order path={'feed'}/>
           </Route>
           <ProtectedRoute path='/profile' exact>  
             <Profile />
@@ -90,13 +90,13 @@ export default function App() {
             <ProfileOrders />
           </ProtectedRoute>
           <ProtectedRoute path='/profile/orders/:id' exact> 
-            <Order />
+            <Order path={'profile'}/>
           </ProtectedRoute>
           <Route path='/ingredients/:id' exact>
             <Ingredient />
           </Route>
         </Switch>
-          {background && (
+          {background &&(
             <Route path='/ingredients/:id'>
               <Modal closeModal={closeModal}>
                 <IngredientDetails />
@@ -106,14 +106,14 @@ export default function App() {
           {background && (
             <Route path='/profile/orders/:id'>
               <Modal closeModal={closeModal}>
-                <OrderInfo modal={true}/>
+                <OrderInfo modal={true} path={'profile'}/>
               </Modal>
             </Route>
           )}
           {background && (
             <Route path='/feed/:id'>
               <Modal closeModal={closeModal}>
-                <OrderInfo modal={true}/>
+                <OrderInfo modal={true} path={'feed'}/>
               </Modal>
             </Route>
           )}

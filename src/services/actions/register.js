@@ -1,4 +1,5 @@
 import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
@@ -17,12 +18,7 @@ export function register(form) {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

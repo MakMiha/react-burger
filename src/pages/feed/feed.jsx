@@ -4,8 +4,10 @@ import feedStyle from './feed.module.css';
 import Order from '../../components/order/order';
 import {
   WS_CONNECTION_START,
+  WS_CONNECTION_CLOSED
 } from '../../services/actions/wsActions';
 import { Link, useLocation } from 'react-router-dom';
+import Preloader from '../../components/preloader/preloader';
 
 export function Feed() {
 
@@ -16,6 +18,9 @@ export function Feed() {
       type: WS_CONNECTION_START,
       user: false,
     });
+    return () => {
+      dispatch({ type: WS_CONNECTION_CLOSED });
+    };
   }, [dispatch]);
   const ordersData = useSelector((store) => store.ws.messages);
 
@@ -27,7 +32,7 @@ export function Feed() {
   }
 
   if (!ordersData.orders.length) {
-    return null;
+    return <Preloader />;
   }
 
   return (

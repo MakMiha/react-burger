@@ -34,10 +34,11 @@ export default function AppHeader() {
           </ul>
         </nav>
         <div className={headerStyles.logo}>
-          <Logo />
+          <Link className={headerStyles.link}  to='/'>
+            <Logo />
+          </Link>
         </div>
-        <a className={headerStyles.button + ' mt-4 p-5'}>
-          <Link className={headerStyles.link} to='/profile'>
+          <Link className={headerStyles.link + ' mt-4 p-5'} to='/profile'>
             <ProfileIcon type={window.location.pathname === '/profile' ? 'primary' : 'secondary'} />
             <p className={
                       ( window.location.pathname === '/profile'
@@ -46,7 +47,6 @@ export default function AppHeader() {
                       ' text text_type_main-default ml-2'
                     }>Личный кабинет</p>
           </Link>
-        </a>
       </header>
     )
   

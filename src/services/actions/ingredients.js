@@ -1,4 +1,5 @@
 import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
@@ -10,12 +11,7 @@ export function getIngredients() {
       type: GET_INGREDIENTS_REQUEST,
     });
     fetch(`${URL}/ingredients`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

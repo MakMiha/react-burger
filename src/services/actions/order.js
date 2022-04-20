@@ -1,4 +1,5 @@
 import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 import { getCookie } from '../../utils/cookie';
 
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
@@ -22,12 +23,7 @@ export function postOrder(order) {
         authorization: getCookie('accessToken'),
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

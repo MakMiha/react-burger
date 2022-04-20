@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import profileStyle from './profile.module.css';
 import { logout } from '../../services/actions/logout';
 import { NavLink, Redirect, Link, useLocation  } from 'react-router-dom';
-import { WS_CONNECTION_START, } from '../../services/actions/wsActions'
+import { 
+  WS_CONNECTION_START, 
+  WS_CONNECTION_CLOSED
+} from '../../services/actions/wsActions'
 import Order from '../../components/order/order';
 
 export function ProfileOrders() {
@@ -19,6 +22,9 @@ export function ProfileOrders() {
       type: WS_CONNECTION_START,
       user: true,
     });
+    return () => {
+      dispatch({ type: WS_CONNECTION_CLOSED });
+    };
   }, [dispatch]);
   
   const onExit = (e) => {

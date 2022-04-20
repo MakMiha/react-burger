@@ -1,6 +1,7 @@
 import React from 'react';
 import stylesOrder from './order-details.module.css';
 import doneImage from '../../images/done.svg';
+import PropTypes from 'prop-types';
 
 export default function OrderDetails({orderNumber}) {
   
@@ -16,3 +17,7 @@ export default function OrderDetails({orderNumber}) {
     </div>
   );
 }
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.string.isRequired,
+};
