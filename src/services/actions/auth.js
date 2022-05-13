@@ -1,6 +1,6 @@
-import URL from '../../utils/data';
+import { URL } from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 import { setCookie } from '../../utils/cookie';
-import { getUserInfo } from './get-user-info';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_REQUEST = 'AUTH_REQUEST';
@@ -20,12 +20,7 @@ export function signIn(form) {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

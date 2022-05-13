@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import IngredientDetails from '../../components/ingredient-details/ingredient-details';
 import stylesIngridient from './ingredient.module.css';
+import Preloader from '../../components/preloader/preloader';
 
 export function Ingredient() {
 
@@ -11,7 +12,7 @@ export function Ingredient() {
   const ingredientData = ingredients.find((ingredient) => ingredient._id === id);
 
   if (!ingredientData) {
-    return null;
+    return <Preloader />;
   }
   return (
     <div className={stylesIngridient.main}>

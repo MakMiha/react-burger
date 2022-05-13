@@ -1,4 +1,5 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 
 export const PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
 export const PASSWORD_RESET_REQUEST = 'PASSWORD_RESET_REQUEST';
@@ -19,12 +20,7 @@ export function passwordReset(email) {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

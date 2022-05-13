@@ -43,3 +43,27 @@
   padding: 0;
   display: flex;
 }
+
+.ordersList {
+  margin: 0 0 0 60px;
+  width: 840px;
+  height: 700px;
+  overflow-y: scroll;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.ordersList::-webkit-scrollbar {
+  width: 8px;
+}
+.ordersList::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+.ordersList::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+.linkOrder {
+  text-decoration: none;
+  color: inherit;
+}

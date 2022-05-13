@@ -1,4 +1,5 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 import { getCookie } from '../../utils/cookie';
 import { updateToken } from './update-token';
 
@@ -19,12 +20,7 @@ export function getUserInfo() {
         authorization: getCookie('accessToken'),
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({
@@ -45,7 +41,6 @@ export function getUserInfo() {
         });
         if (err === 'Ошибка 403') {
           dispatch(updateToken());
-          dispatch(getUserInfo());
         }
       });
   };

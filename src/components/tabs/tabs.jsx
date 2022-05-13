@@ -3,6 +3,7 @@ import stylesTabs from './tabs.module.css';
 import {
   Tab,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
   const Tabs = ({ current, setCurrent }) => {
     return (
@@ -20,4 +21,8 @@ import {
     );
   };
 
+Tabs.propTypes = {
+  current: PropTypes.string.isRequired,
+  setCurrent: PropTypes.func.isRequired,
+};
 export default Tabs;

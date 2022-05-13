@@ -18,10 +18,11 @@ import {
 } from '../../services/actions/constructor';
 import IngredientConstructor from '../ingredient-constructor/ingredient-constructor';
 import { useHistory } from 'react-router-dom';
+import Preloader from '../preloader/preloader';
 
 export default function BurgerConstructor() {
 
-  const history = useHistory();
+  const history = useHistory(); 
   const dispatch = useDispatch();
   const { bun, data, user} = useSelector((state) => ({
     bun: state.constructorIngredients.bun,
@@ -31,6 +32,7 @@ export default function BurgerConstructor() {
   }));
   const [modalVisible, setModalVisible] = React.useState(false);
   const orderNumber = useSelector((state) => state.order.orderNumber);
+  const orderNumberRequest = useSelector((state) => state.order.orderNumberRequest);
   const isUser = user != null;
   const closeModal = () => {
     setModalVisible(false);
@@ -91,6 +93,10 @@ export default function BurgerConstructor() {
       })
     }, [data]
   )
+
+  if (orderNumberRequest) {
+    return <Preloader />;
+  }
 
   return (
     <section ref={dropTarget} className={stylesCostruct.burgerConstructor + ' pt-25 ml-10'}>

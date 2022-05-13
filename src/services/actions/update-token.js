@@ -1,4 +1,5 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 import { setCookie } from '../../utils/cookie';
 import { getUserInfo } from '../actions/get-user-info';
 
@@ -21,12 +22,7 @@ export function updateToken() {
         token: localStorage.getItem('refreshToken')
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

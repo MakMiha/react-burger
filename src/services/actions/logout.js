@@ -1,4 +1,5 @@
-import URL from '../../utils/data';
+import {URL} from '../../utils/data';
+import { _checkResponse } from '../../utils/func';
 import { deleteCookie } from '../../utils/cookie';
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
@@ -21,12 +22,7 @@ export function logout() {
         'Content-Type': 'application/json',
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      })
+      .then(_checkResponse)
       .then((res) => {
         if (res.success) {
           dispatch({

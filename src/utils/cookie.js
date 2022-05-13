@@ -31,3 +31,7 @@ export function setCookie(name, value, props) {
 export function deleteCookie(name) {
   setCookie(name, null, { expires: -1 });
 }
+
+export function getShortToken() {
+ return getCookie('accessToken').split('Bearer ')[1];
+}
