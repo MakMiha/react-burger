@@ -7,20 +7,20 @@ export const RESET_BURGER_CONSTRUCTOR: 'RESET_BURGER_CONSTRUCTOR' = 'RESET_BURGE
 
 export interface IAddIngredientAction {
   readonly type: typeof ADD_INGREDIENT;
-  data: TIngredient;
-  uniqId: number;
+  readonly data: TIngredient;
+  readonly uniqId: number;
 }
 export interface IDeleteIngredientAction {
   readonly type: typeof DELETE_INGREDIENT;
-  data: TIngredient;
+  readonly data: TIngredient;
 }
 export interface IMoveIngredientAction {
   readonly type: typeof MOVE_INGREDIENT;
-  data: Array<TIngredient>;
+  readonly data: Array<TIngredient>;
 }
 export interface IAddBunAction {
   readonly type: typeof ADD_BUN;
-  data: TIngredient;
+  readonly data: TIngredient;
 }
 export interface IResetBurgerConstructorAction {
   readonly type: typeof RESET_BURGER_CONSTRUCTOR;

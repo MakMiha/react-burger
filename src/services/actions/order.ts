@@ -10,7 +10,7 @@ export const RESET_ORDER_NUMBER: 'RESET_ORDER_NUMBER' = 'RESET_ORDER_NUMBER';
 
 export interface IGetOrderNumberSucessAction {
   readonly type: typeof GET_ORDER_NUMBER_SUCCESS;
-  orderNumber: number;
+  readonly orderNumber: number;
 }
 export interface IGetOrderNumberRequestAction {
   readonly type: typeof GET_ORDER_NUMBER_REQUEST;

@@ -24,7 +24,7 @@ export interface IwsConnectionSucessAction {
 }
 export interface IwsConnectionErrorAction {
   readonly type: typeof WS_CONNECTION_ERROR;
-  payload: string;
+  readonly payload: string;
 }
 
 export interface IwsConnectionClosedAction {
@@ -32,11 +32,11 @@ export interface IwsConnectionClosedAction {
 }
 export interface IwsGetMessageAction {
   readonly type: typeof WS_GET_MESSAGE;
-  payload: TOrders;
+  readonly payload: TOrders;
 }
 export interface IwsSendMessageAction {
   readonly type: typeof WS_SEND_MESSAGE;
-  payload: TOrders;
+  readonly payload: TOrders;
 }
 
 export type TwsIActions =

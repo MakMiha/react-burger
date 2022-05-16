@@ -18,7 +18,7 @@ export const CLEAR_USER_INFO: 'CLEAR_USER_INFO' = 'CLEAR_USER_INFO';
 
 export interface IGetUserSucessAction {
   readonly type: typeof GET_USER_INFO_SUCCESS;
-  user: TUserInfo;
+  readonly user: TUserInfo;
 }
 export interface IGetUserRequestAction {
   readonly type: typeof GET_USER_INFO_REQUEST;
@@ -29,7 +29,7 @@ export interface IGetUserErrorAction {
 
 export interface IUpdateUserInfoSucessAction {
   readonly type: typeof UPDATE_USER_INFO_SUCCESS;
-  user: TUserInfo;
+  readonly user: TUserInfo;
 }
 export interface IUpdateUserInfoRequestAction {
   readonly type: typeof UPDATE_USER_INFO_REQUEST;
@@ -40,7 +40,7 @@ export interface IUpdateUserInfoErrorAction {
 
 export interface ISetUserAction {
   readonly type: typeof SET_USER;
-  user: TUserInfo;
+  readonly user: TUserInfo;
 }
 
 export interface IClearUserInfoAction {

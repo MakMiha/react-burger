@@ -9,7 +9,7 @@ export const GET_INGREDIENTS_ERROR: 'GET_INGREDIENTS_ERROR' = 'GET_INGREDIENTS_E
 
 export interface IGetIngredientsSucessAction {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  data: Array<TIngredient>;
+  readonly data: Array<TIngredient>;
 }
 export interface IGetIngredientsRequestAction {
   readonly type: typeof GET_INGREDIENTS_REQUEST;
