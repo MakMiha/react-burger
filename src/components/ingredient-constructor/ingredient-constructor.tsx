@@ -5,7 +5,7 @@ import {
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrop, useDrag } from 'react-dnd';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { DELETE_INGREDIENT } from '../../services/actions/constructor';
 import { TIngredient } from '../../utils/types';
 

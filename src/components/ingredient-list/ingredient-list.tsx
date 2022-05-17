@@ -12,7 +12,7 @@ const IngredientsList: FC<TIngredientsListProps> = ({ data, type }) => {
 
     return (
       <ul className={stylesIngredientsList.list + ' pl-4 mt-6 mb-10'}>
-        {data.map((ingredient: TIngredient) =>
+        {data.map((ingredient) =>
             ingredient.type === type && (
               <Ingredient data={ingredient}  key={ingredient._id}/>
             )

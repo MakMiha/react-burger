@@ -1,11 +1,11 @@
-export function getCookie(name) {
+export const getCookie = (name: string): string | undefined =>  {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function setCookie(name, value, props) {
+export const setCookie = (name: string, value: string | number | boolean, props?: any ) => {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {
@@ -28,10 +28,15 @@ export function setCookie(name, value, props) {
   document.cookie = updatedCookie;
 }
 
-export function deleteCookie(name) {
-  setCookie(name, null, { expires: -1 });
+export const deleteCookie = (name: string) => {
+  setCookie(name, false, { expires: -1 });
 }
 
-export function getShortToken() {
- return getCookie('accessToken').split('Bearer ')[1];
+export const getShortToken= () => {
+  let shortToken = getCookie('accessToken');
+  if (shortToken) {
+    return shortToken = shortToken.split('Bearer ')[1]
+  } else {
+    return  shortToken = '';
+  }
 }

@@ -12,9 +12,9 @@ type TOrderProps = {
 const Order: FC<TOrderProps> = ({ data }) => {
 
   const ingredientsData = useSelector( (store) => store.ingredients.ingredients );
-  const ingredientsUsed = ingredientsData.filter((ingredient: TIngredient) => data.ingredients.includes(ingredient._id));
+  const ingredientsUsed = ingredientsData.filter((ingredient) => data.ingredients.includes(ingredient._id));
 
-  const price = ingredientsUsed.reduce((price: number, ingredient: TIngredient) => price + (ingredient.type === 'bun' ? ingredient.price * 2 : ingredient.price), 0);
+  const price = ingredientsUsed.reduce((price, ingredient) => price + (ingredient.type === 'bun' ? ingredient.price * 2 : ingredient.price), 0);
 
   return (
     <li className={orderStyle.order + ' p-6 mr-2 mb-4'} >
@@ -25,7 +25,7 @@ const Order: FC<TOrderProps> = ({ data }) => {
       <h3 className={'text text_type_main-medium mt-6 mb-6'}>{data.name}</h3>
       <div className={orderStyle.box}>
         <div className={orderStyle.ingredients + ' pl-6'}>
-          {ingredientsUsed && ingredientsUsed.reverse().map((ingredient: TIngredient, index: number) => {
+          {ingredientsUsed && ingredientsUsed.reverse().map((ingredient, index) => {
             if(index >= 6) return;
             let rest;
             if (index === 0 && ingredientsUsed.length > 6) {

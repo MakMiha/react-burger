@@ -32,7 +32,7 @@ const Ingredient: FC<TIngredientProps> = ({ data }) => {
         return 1;
       }
     } else {
-      return (selectedIngredients as any[]).filter((ingredient: TIngredient) => ingredient._id === data._id).length;
+      return (selectedIngredients as any[]).filter((ingredient) => ingredient._id === data._id).length;
     }
   }
   React.useEffect(() => {

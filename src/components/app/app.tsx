@@ -20,7 +20,7 @@ import {
   ProfileOrders
 } from '../../pages';
 import { getIngredients } from '../../services/actions/ingredients';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../services/hooks';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import OrderInfo from '../order-info/order-info';

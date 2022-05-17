@@ -24,17 +24,17 @@ const OrderInfo: FC<TOrderInfoProps> = ({ modal, path }) => {
   const ingredientsData = useSelector( (store) => store.ingredients.ingredients ); 
 
   let ingredientsUsed: Array<TIngredient> = [];
-  let price: number | undefined;
-  let status: string | undefined;
-  let number: number | undefined;
-  let name: string | undefined;
-  let createdDate: string | undefined;
+  let price: number = 0;
+  let status: string = '';
+  let number: number = 0;
+  let name: string = '';
+  let createdDate: string = '';
   if (allOrdersData.length && ingredientsData.length) {
-    const orderData = allOrdersData.find((order: TOrder) => order._id === id);
+    const orderData = allOrdersData.find((order) => order._id === id);
     if (orderData) {
-      ingredientsUsed = ingredientsData.filter((ingredient: TIngredient) => orderData.ingredients.includes(ingredient._id));
+      ingredientsUsed = ingredientsData.filter((ingredient) => orderData.ingredients.includes(ingredient._id));
 
-      price = ingredientsUsed.reduce((price: number, ingredient: TIngredient) => price + (ingredient.type === 'bun' ? ingredient.price * 2 : ingredient.price), 0);
+      price = ingredientsUsed.reduce((price, ingredient) => price + (ingredient.type === 'bun' ? ingredient.price * 2 : ingredient.price), 0);
     
       status = orderData?.status === 'done' ? 'Выполнен' : orderData?.status === 'created'
         ? 'Создан' : orderData?.status === 'pending' ? 'Готовится' : '';

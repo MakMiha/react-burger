@@ -67,7 +67,7 @@ export function ProfileOrders() {
       </nav>
 
       <ul className={profileStyle.ordersList}>
-        {ordersData.length && ordersData.reverse().map((order: TOrder) => {
+        {ordersData.length && ordersData.reverse().map((order) => {
           return (
             <Link
             key={order._id}

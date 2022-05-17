@@ -8,7 +8,7 @@ export default function IngredientDetails() {
 
   const { id } = useParams<{ id: string }>(); 
   const ingredients = useSelector((store) => store.ingredients.ingredients);
-  const ingredientData = ingredients.find((ingredient: TIngredient) => ingredient._id === id);
+  const ingredientData = ingredients.find((ingredient) => ingredient._id === id);
 
   if (!ingredientData) {
     return null;

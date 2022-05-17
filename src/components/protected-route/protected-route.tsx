@@ -1,22 +1,20 @@
-import { Redirect, Route, } from 'react-router-dom';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import React, { FC } from 'react';
 import { useSelector } from '../../services/hooks';
 
-type TProtectedRouteProps = {
-  children: React.ReactNode;
-  path: string;
-  exact?: boolean;
-}
-
-export const ProtectedRoute: FC<TProtectedRouteProps> = ({ children, ...rest }) =>{
+export const ProtectedRoute: FC<RouteProps> = ({ children, ...rest }) =>{
 
   const user = useSelector((store) => store.userInfo.user);
   const isUser = user != null;
 
+  if (!isUser) {
+    return null;
+  }
+
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ location }: any) =>
         (isUser) ? (
           children
         ) : (

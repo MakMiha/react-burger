@@ -44,7 +44,7 @@ export default function BurgerConstructor() {
       type: RESET_BURGER_CONSTRUCTOR,
     });
   } 
-  const order = (data.map((ingredient: TIngredient) => ingredient._id)).concat(bun._id);
+  const order = (data.map((ingredient) => ingredient._id)).concat(bun._id);
   const openModal = () => {
     if (isUser) {
       dispatch(postOrder(order));
@@ -57,7 +57,7 @@ export default function BurgerConstructor() {
   const initialState = { totalPrice: 0 };
   const [totalPriceState, dispatchTotalPrice] = React.useReducer(reducer, initialState, undefined);
   function reducer() {
-    const totalPrice = (data as any[]).reduce((total: number, ingredient: TIngredient) => total + ingredient.price, 0) + bun.price * 2;
+    const totalPrice = (data as any[]).reduce((total, ingredient) => total + ingredient.price, 0) + bun.price * 2;
     return totalPrice ? { totalPrice: totalPrice } : { totalPrice: 0 };
   }
   React.useEffect(() => { dispatchTotalPrice() }, [data]);
@@ -115,7 +115,7 @@ export default function BurgerConstructor() {
         )}
       </ul>
       <ul className={stylesCostruct.listMain + ' pr-2 ml-4'}>
-        {data.map((ingredient: TIngredient, index: number) => { 
+        {data.map((ingredient, index) => { 
           if (ingredient.type !== 'bun') {
             return (
               <IngredientConstructor

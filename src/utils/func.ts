@@ -1,11 +1,11 @@
-export const _checkResponse = (res) => {
+export const _checkResponse = (res: Response) => {
   if (res.ok) {
     return res.json();
   }
     return Promise.reject(`Ошибка ${res.status}`);
 };
 
-export const getCreatedDate = (createdDate) => {
+export const getCreatedDate = (createdDate: string) => {
   const createdAt = new Date(createdDate);
   const today = new Date();
   const hours = createdAt.getHours();

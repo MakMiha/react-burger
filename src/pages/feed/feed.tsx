@@ -28,8 +28,8 @@ export function Feed() {
   let оrdersDone: Array<TOrder> = [];
   let оrdersCooking: Array<TOrder>= [];
   if (ordersData.orders.length) {
-    оrdersDone = ordersData.orders.filter((order: TOrder) => order.status === 'done');
-    оrdersCooking = ordersData.orders.filter((order: TOrder) => order.status !== 'done');
+    оrdersDone = ordersData.orders.filter((order) => order.status === 'done');
+    оrdersCooking = ordersData.orders.filter((order) => order.status !== 'done');
   }
 
   if (!ordersData.orders.length) {
@@ -42,7 +42,7 @@ export function Feed() {
       <div className={feedStyle.feed}>
         <section className={feedStyle.section}>
           <ul className={feedStyle.ordersList + ' mt-6'}>
-            {ordersData.orders.map((order: TOrder) => {
+            {ordersData.orders.map((order) => {
               return (
                 <Link
                   key={order._id}
@@ -63,7 +63,7 @@ export function Feed() {
             <div className={feedStyle.column}>
               <p className={'text text_type_main-medium mb-6'}>Готовы:</p>
               <ul className={feedStyle.listDone}>
-                {оrdersDone.slice(0, 5).map((order: TOrder) => {
+                {оrdersDone.slice(0, 5).map((order) => {
                     return (
                       <li className={feedStyle.listOrder + ' text text_type_digits-default mb-2'} key={order._id}>{order.number}</li>
                     );
@@ -73,7 +73,7 @@ export function Feed() {
             <div className={feedStyle.column + ' ml-9'}>
               <p className={'text text_type_main-medium mb-6'}>В работе:</p>
               <ul className={feedStyle.list}>
-                {оrdersCooking.slice(0, 5).map((order: TOrder) => {
+                {оrdersCooking.slice(0, 5).map((order) => {
                     return (
                       <li className={feedStyle.listOrder + ' text text_type_digits-default mb-2'} key={order._id}>{order.number}</li>
                     );
