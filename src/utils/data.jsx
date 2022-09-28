@@ -213,3 +213,18 @@ const ingredients = [
 
 export const URL = "https://norma.nomoreparties.space/api";
 export const wsUrl = 'wss://norma.nomoreparties.space/orders';
+
+export const ingredient = {
+  _id: '',
+  type: '',
+ image: '',
+  image_mobile: '',
+  image_large: '',
+  name: '',
+  price: 0,
+  proteins: 0,
+  fat: 0,
+  carbohydrates: 0,
+  calories: 0,
+  __v: 0,
+}
